@@ -1,5 +1,6 @@
 class RoundPeg {
   constructor(private radius: number) {
+    radius
   }
 
   getRadius() {
@@ -18,7 +19,7 @@ class SquarePeg {
 
 class SquarePegAdapter extends RoundPeg {
   constructor(private peg: SquarePeg) {
-    super(Math.floor(Math.sqrt(2 * Math.pow(peg.getWidth(), 2)) / 2));
+    super(Math.sqrt(2 * peg.getWidth() ** 2) >> 1);
   }
 }
 
@@ -31,7 +32,7 @@ class RoundHole {
     return this.radius;
   }
 
-  fits(peg: RoundPeg) {
+  fits(peg: RoundPeg): boolean {
     console.log(this.getRadius());
     console.log(peg.getRadius());
     return this.getRadius() >= peg.getRadius();
